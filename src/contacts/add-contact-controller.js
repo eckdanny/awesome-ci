@@ -5,11 +5,20 @@
     .controller('app.contacts.AddContactController', AddContactController);
 
   function AddContactController (COOLNESSES, ContactsService) {
+
+    var self = this;
+
     angular.extend(this, {
-      add: _.bind(ContactsService.add, ContactsService),
+      add: add,
       contactData: {},
       coolnesses: COOLNESSES
     });
+
+    function add (contactData) {
+      if (ContactsService.add(contactData)) {
+        self.contactData = {};
+      }
+    }
   }
 
 })(window, window.angular, window._);

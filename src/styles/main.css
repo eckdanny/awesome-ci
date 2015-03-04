@@ -40,14 +40,15 @@ input[type="text"] {
 button, input[type="button,submit"] {
   width: 100%;
   padding: 10px;
-  background-color: aliceblue;
+  background-color: rgb(99, 229, 108);
   border-radius: 0;
   border: 1px solid #CCC;
   font-size: .8em;
 }
 
 button[disabled] {
-  background-color: darksalmon;
+  background-color: rgb(244, 81, 81);
+  color: white;
 }
 
 form {
