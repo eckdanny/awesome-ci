@@ -1,0 +1,47 @@
+<div ng-controller="app.contacts.AddContactController as addVm">
+  <h4
+    ng-bind="::'Add Contact'"
+  ></h4>
+  <form
+    name="contactForm"
+    ng-submit="addVm.add(addVm.contactData)"
+  >
+    <label
+      ng-bind="::'Name'"
+    ></label>
+    <input
+      type="text"
+      ng-model="addVm.contactData.name"
+      placeholder="John Doe"
+      required
+    >
+    <fieldset>
+      <legend
+        ng-bind="::'Coolness'"
+      ></legend>
+      <table>
+        <tr>
+          <td
+            ng-repeat="coolness in addVm.coolnesses"
+          >
+            <label>
+              <input
+                type="radio"
+                name="coolness"
+                ng-model="addVm.contactData.coolness"
+                ng-value="::coolness.value"
+                required
+              >
+              <span ng-bind="::coolness.display"></span>
+            </label>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    <button
+      type="submit"
+      ng-bind="::'Add Contact'"
+      ng-disabled="contactForm.$pristine || contactForm.$invalid"
+    ></button>
+  </form>
+</div>

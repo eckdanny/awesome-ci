@@ -20,7 +20,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'greeting/greeting-template.html'"></div>
+    <div ng-include="'contacts/contacts-template.html'"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <!--
@@ -49,10 +49,12 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- build:js({.tmp,src}) scripts/scripts.js -->
         <script src="app.js"></script>
-        <script src="greeting/greeting-module.js"></script>
-        <script src="greeting/greeting-controller.js"></script>
+        <script src="contacts/contacts-module.js"></script>
+        <script src="contacts/list-contacts-controller.js"></script>
+        <script src="contacts/add-contact-controller.js"></script>
+        <script src="contacts/contacts-service.js"></script>
         <!-- endbuild -->
 </body>
 </html>

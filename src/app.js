@@ -4,7 +4,7 @@
     .module(
       'app',
       [
-        'app.greeting'
+        'app.contacts'
       ],
       angular.noop
     );

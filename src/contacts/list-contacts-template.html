@@ -1,0 +1,30 @@
+<div ng-controller="app.contacts.ListContactsController as listVm">
+<h4
+  ng-bind="::'Contact List'"
+></h4>
+  <table class="table-bordered">
+    <thead>
+      <tr>
+        <th ng-bind="::'id'"></th>
+        <th ng-bind="::'Name'"></th>
+        <th ng-bind="::'Coolness'"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="contact in listVm.contacts">
+        <td ng-bind="contact.id"></td>
+        <td ng-bind="contact.name"></td>
+        <td ng-bind="contact.coolness"></td>
+      </tr>
+      <tr
+        ng-if="!listVm.contacts.length"
+      >
+        <td
+          colspan="9999"
+          ng-bind="::'No Contacts Found'"
+          style="color: blue;"
+        ></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
