@@ -14,7 +14,9 @@
       <tr ng-repeat="contact in listVm.contacts">
         <td ng-bind="contact.id"></td>
         <td ng-bind="contact.name"></td>
-        <td ng-bind="contact.coolness"></td>
+        <td>
+          <div coolness="::contact.coolness"></div>
+        </td>
       </tr>
       <tr
         ng-if="!listVm.contacts.length"
