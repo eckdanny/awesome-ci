@@ -6,10 +6,11 @@ describe('contacts module', function  () { 'use strict';
 
   describe('AddContactController', function () {
 
-    var ctrl, COOLNESSES, ContactsService;
+    var ctrl, COOLNESSES, ContactsService, ContactFactory;
 
     beforeEach(function () {
-      ContactsService = jasmine.createSpyObj('ContactsService', ['add']);
+      ContactsService = {};   // jasmine.createSpyObj('ContactsService', ['add']);
+      ContactFactory = {};    // jasmine.createSpyObj('ContactFactory', ['create']);
       COOLNESSES = [ { value : 1, display : 'Cool' } ];
     });
 
@@ -17,6 +18,7 @@ describe('contacts module', function  () { 'use strict';
       ctrl = $controller('app.contacts.AddContactController', {
         $scope: $rootScope.$new(),
         ContactsService: ContactsService,
+        ContactFactory: ContactFactory,
         COOLNESSES: COOLNESSES
       });
     }));
@@ -41,14 +43,28 @@ describe('contacts module', function  () { 'use strict';
     });
 
     describe('add()', function () {
+
       it('should be a viewModel method', function () {
         expect(ctrl.add).toEqual(jasmine.any(Function));
       });
-      it('should passthru to ContactsService.add()', function () {
-        expect(ContactsService.add === ctrl.add);
+
+      it('should delegate contact creation to the ContactFactory', function () {
+
+        var mockContactData = {}, mockContact = { a : 'a' };
+
+        ContactFactory.create = angular.noop;
+        spyOn(ContactFactory, 'create').and.returnValue(mockContact);
+
+        ContactsService.add = angular.noop;
+        spyOn(ContactsService, 'add');
+
         expect(ContactsService.add).not.toHaveBeenCalled();
-        ctrl.add(123);
-        expect(ContactsService.add).toHaveBeenCalledWith(123);
+        expect(ContactFactory.create).not.toHaveBeenCalled();
+
+        ctrl.add(mockContactData);
+
+        expect(ContactFactory.create).toHaveBeenCalledWith(mockContactData);
+        expect(ContactsService.add).toHaveBeenCalledWith(mockContact);
       });
     });
 
