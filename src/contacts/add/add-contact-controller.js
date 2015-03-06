@@ -4,7 +4,7 @@
     .module('app.contacts')
     .controller('app.contacts.AddContactController', AddContactController);
 
-  function AddContactController (COOLNESSES, ContactsService) {
+  function AddContactController (COOLNESSES, ContactFactory, ContactsService) {
 
     var self = this;
 
@@ -15,7 +15,7 @@
     });
 
     function add (contactData) {
-      if (ContactsService.add(contactData)) {
+      if (ContactsService.add(ContactFactory.create(contactData))) {
         self.contactData = {};
       }
     }
