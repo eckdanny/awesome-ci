@@ -6,6 +6,10 @@ describe('contacts module', function  () { 'use strict';
 
   describe('AddContactController', function () {
 
+    it('should failt', function () {
+      expect(true).not.toBe(true);
+    });
+
     var ctrl, COOLNESSES, ContactsService, ContactFactory;
 
     beforeEach(function () {
